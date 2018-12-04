@@ -4,14 +4,10 @@ title: Hello Blog
 
 # 简单记录下本博客搭建过程
 
-<!-- more -->
-
 ## 环境准备
 ### 注册[Github](https://github.com/features)账号
 
 注册成功之后创建一个repository，本文章中设置Repository name为blog，创建成功后点击项目主页Settings按钮，如下图所示：
-
-
 
 `<!-- more -->`表示点击阅读全文时的位置
 
@@ -65,8 +61,8 @@ title: Hello Blog
 然后在资源管理器中创建一个目录作为博客的站点，执行下列命令创建站点
 
 > hexo init <folder>
- cd <folder>
- npm install
+> cd <folder>
+> npm install
 
 配置[NexT](http://theme-next.iissnan.com/)主题
 
@@ -81,9 +77,11 @@ title: Hello Blog
 然后在博客站点根目录执行下列命令生成博客
 
 > hexo g
-hexo s
+> hexo s
 
 在浏览器中输入`http://localhost:4000`即可看到博客页面
+
+<!-- more -->
 
 ## 配置 优化（待更新）
 
@@ -126,17 +124,15 @@ hexo s
 
 ![1543893662336](hello-world/1543893662336.png)
 
-#### 不仔细导致的一个坑，项目名必须使用 `username.github.io`才能使用`https://<用户名>.github.io`访问。否则只能使用
+**不仔细导致的一个坑，项目名必须使用 `username.github.io`才能使用`https://<用户名>.github.io`访问。否则只能使用**
 
 ![1543893721387](hello-world/1543893721387.png)
 
 ## hexo博客参考
 
-##### [hexo博客图片问题](https://www.jianshu.com/p/c2ba9533088a)
-
-##### [hexo-asset-image](https://github.com/CodeFalling/hexo-asset-image)
-
-##### [样式图片url问题](https://segmentfault.com/q/1010000002924963)
+1. [hexo博客图片问题](https://www.jianshu.com/p/c2ba9533088a)
+2. [hexo-asset-image](https://github.com/CodeFalling/hexo-asset-image)
+3. [样式图片url问题](https://segmentfault.com/q/1010000002924963)
 
 ![1543900544235](hello-world/1543900544235.png)
 
@@ -150,4 +146,14 @@ hexo s
 > url: `https://hyramchn.github.io`
 > root: /
 
-##### [hexo博客的URL优化](https://zhangjiejun.com/posts/URL_optimization_in_hexo/)
+4. [hexo博客的URL优化](https://zhangjiejun.com/posts/URL_optimization_in_hexo/)
+
+## 备份source和部分配置文件到Github仓库
+
+因为hexo deploy命令只会上传.deploy_git到Giuhub上，又不想再新建一个仓库来保存源代码和配置文件，查找谷歌最后使用如下方式备份。
+
+1. 将hexo根目录初始化为一个git仓库，并添加remote连接到存放Github Pages项目的ssh连接，添加.gitignore文件
+2. 将默认的master分支重名名为source分支（不知道是不是必须，开始没改名上传不上去），在Github上创建source分支，将本地推送到远程，这里命令没推成功，最后使用source tree推送上去的
+3. 删除source分支里master分支的内容（博客站点代码）
+4. 以后每写一次博客正常发布后将source分支同步到Github即可
+5. 使用git clone url后发现source分支并没有克隆成功，使用git clone source url成功克隆了source分支
